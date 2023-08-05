@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
+import { useTodoContext } from '../../context/TodoContext'
 
 interface TodoItemProps {
   task: string;
   completed: boolean;
-  onToggleComplete: () => void;
-  onDelete: () => void;
-  updateTaskText: (newTaskText: string) => void;
+  id: number;
 }
 
-const TodoItem: React.FC<TodoItemProps> = ({ task, completed, onToggleComplete, onDelete, updateTaskText }) => {
-
+const TodoItem: React.FC<TodoItemProps> = ({ task, completed, id }) => {
   const [editing, setEditing] = useState(false);
   const [editedTask, setEditedTask] = useState(task);
+  const { toggleComplete, deleteTask, updateTaskText } = useTodoContext();
 
   const handleToggleEditing = () => {
     setEditing(!editing);
@@ -23,10 +22,8 @@ const TodoItem: React.FC<TodoItemProps> = ({ task, completed, onToggleComplete, 
 
   const handleTaskSave = () => {
     if (editedTask.trim() !== '' && editedTask !== task) {
-
       setEditing(false);
-
-      updateTaskText(editedTask);
+      updateTaskText(id, editedTask);
     } else {
       setEditing(false);
     }
@@ -40,7 +37,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ task, completed, onToggleComplete, 
 
   return (
     <div  className="todo-item-container">
-      <input type="checkbox" checked={completed} onChange={onToggleComplete} />
+      <input type="checkbox" checked={completed} onChange={() => toggleComplete(id)} />
       {editing ? (
         <div>
         <input
@@ -63,7 +60,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ task, completed, onToggleComplete, 
       <button className="edit-btn" onClick={handleToggleEditing}>
         Edit
       </button>
-      <button className="delete-btn" onClick={onDelete}>
+      <button className="delete-btn" onClick={() => deleteTask(id)}>
         Delete
       </button>
     </div>

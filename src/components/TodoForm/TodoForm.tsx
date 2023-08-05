@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
+import { useTodoContext } from '../../context/TodoContext'
 
-interface TodoFormProps {
-  onSubmit: (task: string) => void;
-}
-
-const TodoForm: React.FC<TodoFormProps> = ({ onSubmit }) => {
+const TodoForm: React.FC = () => {
   const [task, setTask] = useState('');
+  const { addTask } = useTodoContext();
 
   const handleTaskChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTask(event.target.value);
@@ -14,7 +12,7 @@ const TodoForm: React.FC<TodoFormProps> = ({ onSubmit }) => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     if (task.trim() !== '') {
-      onSubmit(task.trim());
+      addTask(task.trim());
       setTask('');
     }
   };
