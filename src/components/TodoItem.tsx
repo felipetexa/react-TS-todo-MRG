@@ -32,6 +32,12 @@ const TodoItem: React.FC<TodoItemProps> = ({ task, completed, onToggleComplete, 
     }
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      handleTaskSave();
+    }
+  };
+
   return (
     <div  className="todo-item-container">
       <input type="checkbox" checked={completed} onChange={onToggleComplete} />
@@ -41,6 +47,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ task, completed, onToggleComplete, 
           type="text"
           value={editedTask}
           onChange={handleTaskUpdate}
+          onKeyDown={handleKeyDown}
           autoFocus
         />
         <button className="save-btn" onClick={handleTaskSave}>
@@ -49,7 +56,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ task, completed, onToggleComplete, 
         </div>
       ) : (
         <span className={`todo-item ${completed ? 'completed' : ''}`}>
-          {task}
+          {completed ? <s>{editedTask}</s> : editedTask}
         </span>
 
       )}
