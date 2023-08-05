@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import TodoList from './components/TodoList';
+import TodoForm from './components/TodoForm';
 
-function App() {
+const App: React.FC = () => {
+  const [tasks, setTasks] = useState<{ id: number; task: string; completed: boolean }[]>([]);
+
+  const handleAddTask = (task: string) => {
+    setTasks((prevTasks) => [...prevTasks, { id: Date.now(), task, completed: false }]);
+  };
+
+  const handleToggleComplete = (taskId: number) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === taskId ? { ...task, completed: !task.completed } : task
+      )
+    );
+  };
+
+  const handleDeleteTask = (taskId: number) => {
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <h1>Todo App</h1>
+      <TodoForm onSubmit={handleAddTask} />
+      <TodoList
+        tasks={tasks}
+        onToggleComplete={handleToggleComplete}
+        onDelete={handleDeleteTask}
+      />
     </div>
   );
-}
+};
 
 export default App;
