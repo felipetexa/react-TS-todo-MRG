@@ -9,9 +9,9 @@ interface TodoItemProps {
 
 const TodoItem: React.FC<TodoItemProps> = ({ task, completed, onToggleComplete, onDelete }) => {
   return (
-    <div className={`todo-item ${completed ? 'completed' : ''}`}>
+    <div >
       <input type="checkbox" checked={completed} onChange={onToggleComplete} />
-      <span className="task">{task}</span>
+      <span className={`todo-item ${completed ? 'completed' : ''}`}>{task}</span>
       <button className="delete-btn" onClick={onDelete}>
         Delete
       </button>
