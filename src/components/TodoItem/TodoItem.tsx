@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { useTodoContext } from '../../context/TodoContext'
+import { useTodoContext } from '../../context/TodoContext';
+import { TodoItemContainer, EditingContainer, CustomInput, TodoItemText, CustomDeleteOutlineIcon, CustomDriveFileRenameOutlineIcon, CustomSaveOutlinedIcon } from './TodoItem.styles';
+import Checkbox from '@mui/material/Checkbox';
+import { IconButton } from '@mui/material';
+
 
 interface TodoItemProps {
   task: string;
@@ -36,34 +40,35 @@ const TodoItem: React.FC<TodoItemProps> = ({ task, completed, id }) => {
   };
 
   return (
-    <div  className="todo-item-container">
-      <input type="checkbox" checked={completed} onChange={() => toggleComplete(id)} />
+    <TodoItemContainer>
+      <Checkbox color="success" checked={completed} onChange={() => toggleComplete(id)} style={{
+  color: '#D8D8D8'}} />
       {editing ? (
-        <div>
-        <input
+        <EditingContainer>
+        <CustomInput
           type="text"
           value={editedTask}
           onChange={handleTaskUpdate}
           onKeyDown={handleKeyDown}
           autoFocus
         />
-        <button className="save-btn" onClick={handleTaskSave}>
-          Save
-        </button>
-        </div>
+        <IconButton onClick={handleTaskSave}>
+          <CustomSaveOutlinedIcon />
+        </IconButton>
+        </EditingContainer>
       ) : (
-        <span className={`todo-item ${completed ? 'completed' : ''}`}>
+        <TodoItemText className={`todo-item ${completed ? 'completed' : ''}`}>
           {completed ? <s>{editedTask}</s> : editedTask}
-        </span>
+        </TodoItemText>
 
       )}
-      <button className="edit-btn" onClick={handleToggleEditing}>
-        Edit
-      </button>
-      <button className="delete-btn" onClick={() => deleteTask(id)}>
-        Delete
-      </button>
-    </div>
+      <IconButton onClick={handleToggleEditing}>
+        <CustomDriveFileRenameOutlineIcon />
+      </IconButton>
+      <IconButton onClick={() => deleteTask(id)}>
+        <CustomDeleteOutlineIcon />
+      </IconButton>
+    </TodoItemContainer>
   );
 };
 
