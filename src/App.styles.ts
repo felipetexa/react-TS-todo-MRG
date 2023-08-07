@@ -8,5 +8,10 @@ export const TodoFormContainer = styled.div`
    justify-content: center;
    font-size: 10rem;
    gap: 2rem;
-   width: 80rem;
+   max-width: 80rem;
+   width: 100%;
+   @media screen and (max-width: 600px) {
+    font-size: 5rem;
+   }
  `;
+

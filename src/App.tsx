@@ -9,7 +9,6 @@ const App: React.FC = () => {
   return (
     <TodoProvider>
     <TodoFormContainer>
-      <h1>ToDo App</h1>
       <TodoForm />
       <TodoList />
     </TodoFormContainer>

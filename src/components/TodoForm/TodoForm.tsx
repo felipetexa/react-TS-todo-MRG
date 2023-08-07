@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTodoContext } from '../../context/TodoContext';
 import { IconButton } from '@mui/material';
-import { CustomAddIcon, InputTask } from './TodoForm.styles';
+import { CustomAddIcon, InputTask, TodoFormContainer, InputContainer } from './TodoForm.styles';
 
 const TodoForm: React.FC = () => {
   const [task, setTask] = useState('');
@@ -20,13 +20,17 @@ const TodoForm: React.FC = () => {
   };
 
   return (
+    <TodoFormContainer>
+      <h1>ToDo App</h1>
     <form className="todo-form" onSubmit={handleSubmit}>
+    <InputContainer>
       <InputTask type="text" value={task} onChange={handleTaskChange} placeholder="Enter a new task..." />
       <IconButton type="submit">
       <CustomAddIcon />
       </IconButton>
-        
+      </InputContainer>
     </form>
+    </TodoFormContainer>
   );
 };
 
