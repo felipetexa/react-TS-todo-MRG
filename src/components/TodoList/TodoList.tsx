@@ -4,11 +4,11 @@ import { TodoListContainer } from './TodoList.styles';
 
 
 const TodoList: React.FC = () => {
-  const { tasks } = useTodoContext();
+  const { filteredTasks } = useTodoContext();
 
   return (
     <TodoListContainer>
-      {tasks.map((task) => (
+      {filteredTasks.map((task) => (
         <TodoItem
           key={task.id}
           id={task.id}

@@ -8,10 +8,12 @@ interface Todo {
 
 interface TodoContextValue {
   tasks: Todo[];
+  filteredTasks: Todo[];
   addTask: (task: string) => Promise<void>;
   toggleComplete: (taskId: number) => Promise<void>;
   deleteTask: (taskId: number) => Promise<void>;
   updateTaskText: (taskId: number, newTaskText: string) => Promise<void>;
+  setFilter: (filter: string) => void;
 }
 
 interface ContextProviderProps {
@@ -20,10 +22,12 @@ interface ContextProviderProps {
 
 export const TodoContext = createContext<TodoContextValue>({
   tasks: [],
+  filteredTasks: [],
   addTask: () => Promise.resolve(),
   toggleComplete: () => Promise.resolve(),
   deleteTask: () => Promise.resolve(),
   updateTaskText: () => Promise.resolve(),
+  setFilter: () => {},
 });
 
 export const useTodoContext = () => useContext(TodoContext);
@@ -32,6 +36,7 @@ const API_BASE_URL = 'http://localhost:5000';
 
 export const TodoProvider: React.FC<ContextProviderProps> = ({ children }) => {
   const [tasks, setTasks] = useState<Todo[]>([]);
+  const [filter, setFilter] = useState('all');
 
   useEffect(() => {
     fetch(`${API_BASE_URL}/api/tasks`)
@@ -39,6 +44,16 @@ export const TodoProvider: React.FC<ContextProviderProps> = ({ children }) => {
       .then(data => setTasks(data))
       .catch(error => console.error('Error fetching tasks:', error));
   }, []);
+
+  const filteredTasks = tasks.filter(task => {
+    if (filter === 'completed') {
+      return task.completed;
+    } else if (filter === 'incomplete') {
+      return !task.completed;
+    } else {
+      return true;
+    }
+  });
 
   const addTask = async (task: string) => {
     try {
@@ -115,7 +130,7 @@ export const TodoProvider: React.FC<ContextProviderProps> = ({ children }) => {
 
   return (
     <TodoContext.Provider
-      value={{ tasks, addTask, toggleComplete, deleteTask, updateTaskText }}
+      value={{ tasks, filteredTasks, addTask, toggleComplete, deleteTask, updateTaskText, setFilter }}
     >
       {children}
     </TodoContext.Provider>

@@ -15,7 +15,7 @@ export const TodoItemContainer = styled.div`
    width: 80rem;
    overflow: hidden;
 
-   @media screen and (max-width: 800px) {
+   @media screen and (max-width: 900px) {
     flex-wrap: wrap;
     justify-content: space-between;
     max-width: 37.5rem;
@@ -33,7 +33,7 @@ export const EditingContainer = styled.div`
   flex-grow: 1; 
   max-width: 100%; 
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 900px) {
     width: 15%; 
   }
 `
@@ -48,7 +48,7 @@ font-size: 2rem;
 color: #d8d8d8;
 margin-right: 6rem;
 background: #072e61;
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
     width: 10%; 
     margin-right: 0;
     margin-bottom: 1rem; 
