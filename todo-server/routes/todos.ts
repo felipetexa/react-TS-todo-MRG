@@ -14,6 +14,19 @@ router.post('/', (req, res) => {
   res.status(201).json(newTask);
 });
 
+router.patch('/:id/complete', (req, res) => {
+  const { id } = req.params;
+  const taskToUpdate = tasks.find((t) => t.id === parseInt(id));
+  
+  if (!taskToUpdate) {
+    return res.status(404).json({ message: 'Task not found' });
+  }
+  
+  taskToUpdate.completed = !taskToUpdate.completed;
+  
+  res.json(taskToUpdate);
+});
+
 router.put('/:id', (req, res) => {
   const { id } = req.params;
   const { task, completed } = req.body;
