@@ -25,7 +25,7 @@ const TodoForm: React.FC = () => {
     <form className="todo-form" onSubmit={handleSubmit}>
     <InputContainer>
       <InputTask type="text" value={task} onChange={handleTaskChange} placeholder="Enter a new task..." />
-      <IconButton type="submit">
+      <IconButton type="submit" data-testid="add-button">
       <CustomAddIcon />
       </IconButton>
       </InputContainer>

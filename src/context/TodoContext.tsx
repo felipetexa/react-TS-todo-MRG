@@ -18,7 +18,7 @@ interface ContextProviderProps {
   children: React.ReactNode;
 }
 
-const TodoContext = createContext<TodoContextValue>({
+export const TodoContext = createContext<TodoContextValue>({
   tasks: [],
   addTask: () => Promise.resolve(),
   toggleComplete: () => Promise.resolve(),

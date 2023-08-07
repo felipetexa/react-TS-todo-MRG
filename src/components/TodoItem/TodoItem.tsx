@@ -52,7 +52,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ task, completed, id }) => {
           onKeyDown={handleKeyDown}
           autoFocus
         />
-        <IconButton onClick={handleTaskSave}>
+        <IconButton onClick={handleTaskSave} data-testid="save-button">
           <CustomSaveOutlinedIcon />
         </IconButton>
         </EditingContainer>
@@ -62,10 +62,10 @@ const TodoItem: React.FC<TodoItemProps> = ({ task, completed, id }) => {
         </TodoItemText>
 
       )}
-      <IconButton onClick={handleToggleEditing}>
+      <IconButton onClick={handleToggleEditing} data-testid="edit-button">
         <CustomDriveFileRenameOutlineIcon />
       </IconButton>
-      <IconButton onClick={() => deleteTask(id)}>
+      <IconButton onClick={() => deleteTask(id)} data-testid="delete-button">
         <CustomDeleteOutlineIcon />
       </IconButton>
     </TodoItemContainer>
