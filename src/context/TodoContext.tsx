@@ -32,7 +32,7 @@ export const TodoContext = createContext<TodoContextValue>({
 
 export const useTodoContext = () => useContext(TodoContext);
 
-const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL = 'https://react-ts-todo-mrg-api.vercel.app';
 
 export const TodoProvider: React.FC<ContextProviderProps> = ({ children }) => {
   const [tasks, setTasks] = useState<Todo[]>([]);
