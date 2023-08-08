@@ -37,13 +37,26 @@ const API_BASE_URL = 'https://react-ts-todo-mrg-api.vercel.app';
 export const TodoProvider: React.FC<ContextProviderProps> = ({ children }) => {
   const [tasks, setTasks] = useState<Todo[]>([]);
   const [filter, setFilter] = useState('all');
+  const userId = localStorage.getItem('userId');
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/tasks`)
-      .then(response => response.json())
-      .then(data => setTasks(data))
-      .catch(error => console.error('Error fetching tasks:', error));
-  }, []);
+    const fetchTasks = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/tasks`);
+        if (response.ok) {
+          const data = await response.json();
+          setTasks(data);
+        } else {
+          console.error('Error fetching tasks:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error fetching tasks:', error);
+      }
+    };
+  
+    fetchTasks();
+  }, [userId]);
+  
 
   const filteredTasks = tasks.filter(task => {
     if (filter === 'completed') {
@@ -62,7 +75,7 @@ export const TodoProvider: React.FC<ContextProviderProps> = ({ children }) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ task }),
+        body: JSON.stringify({ task, userId }),
       });
 
       if (response.ok) {

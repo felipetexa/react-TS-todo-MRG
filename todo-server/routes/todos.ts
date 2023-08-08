@@ -1,7 +1,14 @@
 import express from 'express';
 const router = express.Router();
 
-let tasks: { id: number; task: string; completed: boolean }[] = [];
+interface Task {
+  id: number;
+  task: string;
+  completed: boolean;
+  userId: string;
+}
+
+let tasks: Task[] = [];
 
 router.get('/', (req, res) => {
   res.json(tasks);
@@ -9,7 +16,12 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   const { task } = req.body;
-  const newTask = { id: tasks.length + 1, task, completed: false };
+  const newTask: Task = {
+    id: tasks.length + 1,
+    task,
+    completed: false,
+    userId: generateUserId()
+  };
   tasks.push(newTask);
   res.status(201).json(newTask);
 });
@@ -44,5 +56,10 @@ router.delete('/:id', (req, res) => {
   tasks = tasks.filter((t) => t.id !== parseInt(id));
   res.sendStatus(204);
 });
+
+function generateUserId(): string {
+  const userId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+  return userId;
+}
 
 export default router;

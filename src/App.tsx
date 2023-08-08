@@ -8,10 +8,10 @@ const App: React.FC = () => {
 
   return (
     <TodoProvider>
-    <TodoFormContainer>
-      <TodoForm />
-      <TodoList />
-    </TodoFormContainer>
+      <TodoFormContainer>
+        <TodoForm />
+        <TodoList />
+      </TodoFormContainer>
     </TodoProvider>
   );
 };

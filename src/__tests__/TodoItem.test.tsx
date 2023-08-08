@@ -13,6 +13,8 @@ const renderWithProvider = (task: string) => {
     <TodoContext.Provider
       value={{
         tasks: [{ id: 1, task: task, completed: false }],
+        filteredTasks: [],
+        setFilter: () => {},
         addTask: addTaskMock,
         toggleComplete: toggleCompleteMock,
         deleteTask: deleteTaskMock,
@@ -23,8 +25,8 @@ const renderWithProvider = (task: string) => {
     </TodoContext.Provider>
   );
 };
-
-test('TodoItem toggles completion status', async () => {
+describe('TodoItem actions', () => {
+test('toggle completion function is called upon checkbox click', async () => {
   renderWithProvider('Task 1');
 
   const checkbox = screen.getByRole('checkbox');
@@ -33,7 +35,7 @@ test('TodoItem toggles completion status', async () => {
   expect(toggleCompleteMock).toHaveBeenCalledWith(1);
 });
 
-test('TodoItem edits task', async () => {
+test('edit function is called upon input change and save button clicked', async () => {
   renderWithProvider('Task 1');
 
   const editButton = screen.getByTestId('edit-button');
@@ -48,11 +50,12 @@ test('TodoItem edits task', async () => {
   expect(updateTaskTextMock).toHaveBeenCalledWith(1, 'Updated Task');
 });
 
-test('TodoItem deletes task', async () => {
+test('delete function is called upon click on delete task button', async () => {
   renderWithProvider('Task 1');
 
   const deleteButton = screen.getByTestId('delete-button');
   fireEvent.click(deleteButton);
 
   expect(deleteTaskMock).toHaveBeenCalledWith(1);
+});
 });

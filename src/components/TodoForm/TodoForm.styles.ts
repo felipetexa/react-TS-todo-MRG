@@ -24,6 +24,9 @@ export const TitleFilterContainer = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 10rem;
+  h1 {
+    margin-right: 10rem;
+  }
   @media screen and (max-width: 900px) {
     font-size: 5rem;
   }

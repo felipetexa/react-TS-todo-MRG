@@ -33,6 +33,10 @@ const TodoItem: React.FC<TodoItemProps> = ({ task, completed, id }) => {
     }
   };
 
+  const handleTaskClick = () => {
+    toggleComplete(id);
+  };
+
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       handleTaskSave();
@@ -57,7 +61,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ task, completed, id }) => {
         </IconButton>
         </EditingContainer>
       ) : (
-        <TodoItemText className={`todo-item ${completed ? 'completed' : ''}`}>
+        <TodoItemText title={task} onClick={handleTaskClick} className={`todo-item ${completed ? 'completed' : ''}`}>
           {completed ? <s>{editedTask}</s> : editedTask}
         </TodoItemText>
 

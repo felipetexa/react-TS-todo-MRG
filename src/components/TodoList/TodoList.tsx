@@ -8,12 +8,12 @@ const TodoList: React.FC = () => {
 
   return (
     <TodoListContainer>
-      {filteredTasks.map((task) => (
+      {filteredTasks.map(({ id, task, completed }) => (
         <TodoItem
-          key={task.id}
-          id={task.id}
-          task={task.task}
-          completed={task.completed}
+          key={id}
+          id={id}
+          task={task}
+          completed={completed}
         />
       ))}
     </TodoListContainer>

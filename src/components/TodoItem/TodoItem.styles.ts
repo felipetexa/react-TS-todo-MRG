@@ -56,16 +56,19 @@ background: #072e61;
 `
 
 export const TodoItemText = styled.span`
+  cursor: pointer;
   white-space: nowrap;
-  overflow: auto;
+  overflow: hidden;
   text-overflow: ellipsis;
   flex-grow: 1;
+  max-width: 100%;
 `;
 
  export const CustomDeleteOutlineIcon = muiStyled(DeleteOutlineIcon)({
   fontSize: '3rem',
   color: '#D8D8D8'
 })
+
 
  export const CustomDriveFileRenameOutlineIcon = muiStyled(DriveFileRenameOutlineIcon)({
   fontSize: '3rem',

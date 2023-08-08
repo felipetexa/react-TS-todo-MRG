@@ -3,8 +3,8 @@ import { render, fireEvent, screen } from '@testing-library/react';
 import TodoForm from '../components/TodoForm/TodoForm';
 import { TodoContext } from '../context/TodoContext';
 
-
-test('TodoForm submits task to context', () => {
+describe('TodoForm actions', () => {
+test('add task function is called upon click on add task button', () => {
   const addTaskMock = jest.fn();
   const toggleCompleteMock = jest.fn();
   const deleteTaskMock = jest.fn();
@@ -14,6 +14,8 @@ test('TodoForm submits task to context', () => {
     <TodoContext.Provider
       value={{
         tasks: [],
+        filteredTasks: [],
+        setFilter: () => {},
         addTask: addTaskMock,
         toggleComplete: toggleCompleteMock,
         deleteTask: deleteTaskMock,
@@ -31,4 +33,5 @@ test('TodoForm submits task to context', () => {
   fireEvent.click(addButton);
 
   expect(addTaskMock).toHaveBeenCalledWith('New Task');
+});
 });

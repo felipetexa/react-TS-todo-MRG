@@ -35,7 +35,7 @@ const TodoForm: React.FC = () => {
   return (
     <TodoFormContainer>
       <TitleFilterContainer>
-      <h1 style={{marginRight: '10rem'}}>ToDo App</h1>
+      <h1>ToDo App</h1>
       <Button
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
