@@ -2,18 +2,18 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/**/*.ts",
+      "src": "todo-server/**/*.ts",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "api/$1"
+      "dest": "todo-server/$1"
     },
     {
       "src": "/(.*)",
-      "dest": "index.html"
+      "dest": "public/$1"
     }
   ]
 }
