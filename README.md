@@ -1,46 +1,69 @@
-# Getting Started with Create React App
+# Todo App (React TypeScript)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple Todo App built with React and TypeScript.
 
-## Available Scripts
+![App Screenshot](./screenshot.png)
 
-In the project directory, you can run:
+## Table of Contents
 
-### `npm start`
+- [Description](#description)
+- [Features](#features)
+- [Demo](#demo)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Technologies Used](#technologies-used)
+- [Contributing](#contributing)
+- [License](#license)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Description
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The Todo App is a web application that allows users to create, manage, and organize their tasks using a simple and intuitive user interface. It is built using React and TypeScript, with features like task creation, task completion, task editing, and more.
 
-### `npm test`
+## Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Create new tasks with task descriptions.
+- Mark tasks as completed or incomplete.
+- Edit task descriptions.
+- Delete tasks.
+- Filter tasks based on completion status.
+- Responsive design for various screen sizes.
 
-### `npm run build`
+## Demo
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+You can try out the live demo of the Todo App at [https://todo-app-ts-mrg.vercel.app/](https://todo-app-ts-mrg.vercel.app/)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Clone the repository: `git clone https://github.com/felipetexa/react-TS-todo-MRG.git`
+2. Navigate to the project directory: `cd react-TS-todo-MRG`
+3. Install dependencies: `npm install`
 
-### `npm run eject`
+## Usage
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. Start the development server: `npm start`
+2. Open your web browser and navigate to `http://localhost:3000` to access the app.
+3. To run the server locally:
+  - `cd todo-server`
+  - `npx ts-node index.ts`
+  - the server will be available at `http://localhost:5000` (the API_BASE_URL variable in `TodoContext.tsx` must be set to `http://localhost:5000` in order to make the API calls locally)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Technologies Used
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- React
+- TypeScript
+- Material-UI
+- Styled Components
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Contributing
 
-## Learn More
+Contributions are welcome! If you find any issues or want to add new features, feel free to submit a pull request.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Fork the repository.
+2. Create a new branch: `git checkout -b feature-name`
+3. Make your changes and commit them: `git commit -m "Add feature"`
+4. Push to the branch: `git push origin feature-name`
+5. Submit a pull request.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
+
+This project is licensed under the [MIT License](LICENSE).

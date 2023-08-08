@@ -48,7 +48,7 @@ export const TodoProvider: React.FC<ContextProviderProps> = ({ children }) => {
   const filteredTasks = tasks.filter(task => {
     if (filter === 'completed') {
       return task.completed;
-    } else if (filter === 'incomplete') {
+    } else if (filter === 'pending') {
       return !task.completed;
     } else {
       return true;

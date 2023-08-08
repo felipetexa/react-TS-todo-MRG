@@ -56,7 +56,7 @@ const TodoForm: React.FC = () => {
       >
         <MenuItem onClick={() => { setFilter('all'); handleClose(); }}>All tasks</MenuItem>
         <MenuItem onClick={() => { setFilter('completed'); handleClose(); }}>Completed</MenuItem>
-        <MenuItem onClick={() => { setFilter('incomplete'); handleClose(); }}>Incomplete</MenuItem>
+        <MenuItem onClick={() => { setFilter('pending'); handleClose(); }}>Pending</MenuItem>
       </Menu>
       </TitleFilterContainer>
     <form className="todo-form" onSubmit={handleSubmit}>
